@@ -2,7 +2,6 @@ package fr.iutvalence.info.dut.m3105.labyrinthGame;
 
 import java.util.HashSet;
 import java.util.Set;
-
 /**
  * Test application for labyrinth game
  * 
@@ -17,6 +16,7 @@ public class TestLabyrinthGame
 	 */
 	public static void main(String[] args)
 	{
+		String typeRobot = "LDR";
 		Set<Position> blockPositions = new HashSet<Position>();
 		blockPositions.add(new Position(2,0));
 		blockPositions.add(new Position(3,0));
@@ -26,6 +26,6 @@ public class TestLabyrinthGame
 		blockPositions.add(new Position(3,2));
 		blockPositions.add(new Position(3,3));
 		
-		new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), new LesserDumbBotArtificialIntelligence()).play();
+		new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), RobotMaker.createRobot(typeRobot)).play();
 	}
 }
