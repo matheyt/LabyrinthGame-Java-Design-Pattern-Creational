@@ -13,8 +13,14 @@ public class TestLabyrinthGame
 	 * 
 	 * @param args
 	 *            command-line arguments (none expected here)
+	 * @throws ExceptionOutOfBoundExitPosition 
+	 * @throws ExceptionHeightNotNegative 
+	 * @throws ExceptionWidthNotNegative 
+	 * @throws ExceptionOutOfBoundForbiddenCellPosition 
+	 * @throws ExceptionUndefinedForbiddenCellsPositions 
+	 * @throws ExceptionUndefinedExitPosition 
 	 */
-	public static void main(String[] args)
+	public static void main(String[] args) throws ExceptionWidthNotNegative, ExceptionHeightNotNegative, ExceptionOutOfBoundExitPosition, ExceptionUndefinedExitPosition, ExceptionUndefinedForbiddenCellsPositions, ExceptionOutOfBoundForbiddenCellPosition
 	{
 		String typeRobot = "LDR";
 		Set<Position> blockPositions = new HashSet<Position>();
@@ -26,6 +32,9 @@ public class TestLabyrinthGame
 		blockPositions.add(new Position(3,2));
 		blockPositions.add(new Position(3,3));
 		
-		new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), RobotMaker.createRobot(typeRobot)).play();
+		//new LabyrinthGame(new Labyrinth(4, 4, blockPositions, new Position(3,1)), RobotMaker.createRobot(typeRobot)).play();
+		
+		Labyrinth lab = new SimpleLabyrinthBuilder().width(4).height(4).exitPosition(new Position(3,1)).setForbiddenCellsPositions(blockPositions).getLabyrinth();
+		new LabyrinthGame(lab,RobotMaker.createRobot(typeRobot)).play();
 	}
 }
